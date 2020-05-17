@@ -1,7 +1,7 @@
 <?php
 // Imports
-include_once 'constants_inc.php';
-include_once 'db_connect_inc.php'; // Connexion à PDO
+include_once 'commun/constants_inc.php';
+include_once 'commun/db_connect_inc.php'; // Connexion à PDO
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,5 @@
 <?php
-include 'db_connect_inc.php';
+include 'commun/db_connect_inc.php';
 
 //Si on est en mode update (si hot_id dans l'URL)
 if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -31,7 +31,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
       <div id="myform-column">
         <div id="myform-box" class="col-md-12">
           <h2 class="text-center text-info pb-4">Ajouter un propriétaire</h2>
-          <form id="myform-form" class="form" action="proprietaire_action.php<?php echo ($update ? '?id=' . $_GET['id'] : ''); ?>" method="post" enctype="multipart/form-data">
+          <form id="myform-form" class="form" action="actions/proprietaire_action.php<?php echo ($update ? '?id=' . $_GET['id'] : ''); ?>" method="post" enctype="multipart/form-data">
             <div class="row pt-4">
               <div class="col-md-6">
                 <label for="prenom">Prénom*</label>

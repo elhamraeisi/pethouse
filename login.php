@@ -11,7 +11,7 @@
       <div id="myform-row" class="row justify-content-center align-items-center">
         <div id="myform-column" class="col-md-6">
           <div id="myform-box" class="col-md-12">
-            <form id="myform-form" class="form" action="login_action.php" method="post">
+            <form id="myform-form" class="form" action="actions/login_action.php" method="post">
               <h2 class="text-center text-info">Connexion</h2>
               <!-- alert -->
               <?php
@@ -33,7 +33,7 @@
               </div>
               <div class="form-group">
                 <div class="text-center my-3">
-                  <img src="captcha.php">
+                  <img src="commun/captcha.php">
                 </div>
                 <input type="text" name="captcha" id="captcha" placeholder="Entrez le code" class="form-control noborder" required>
               </div>

@@ -1,7 +1,7 @@
 <?php
 // Imports
-include_once 'constants_inc.php';
-include_once 'db_connect_inc.php';
+include_once '../commun/constants_inc.php';
+include_once '../commun/db_connect_inc.php';
 
 // Crée ou restaure une session
 session_start();
@@ -35,13 +35,13 @@ if (isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['pass']) && 
       // Créer un cookie
       setcookie('subscriber', json_encode($_SESSION), time() + 30 * 24 * 60 * 60);
       // Redirection vers INDEX
-      header('location:index.php');
+      header('location:../index.php');
     } else {
-      header('location:login.php?auth=false');
+      header('location:../login.php?auth=false');
     }
   } else {
-    header('location:login.php?auth=false');
+    header('location:../login.php?auth=false');
   }
 } else {
-  header('location:login.php?auth=false');
+  header('location:../login.php?auth=false');
 }

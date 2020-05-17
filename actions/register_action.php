@@ -1,7 +1,7 @@
 <?php
 // Imports
-include_once 'constants_inc.php';
-include_once 'db_connect_inc.php'; // Se connecter à la BDD
+include_once '../commun/constants_inc.php';
+include_once '../commun/db_connect_inc.php'; // Se connecter à la BDD
 //include_once 'functions_inc.php';
 
 
@@ -35,10 +35,10 @@ if ((int) $row['NumberOfUser'] === 0) {
     );
     $data->execute($params);
   } else {
-    header('location:register.php?captcha=false');
+    header('location:../register.php?captcha=false');
   }
   // Renvoie vers INDEX
   // header('location:index.php');
 } else {
-  header('location:register.php?exists=true');
+  header('location:../register.php?exists=true');
 }

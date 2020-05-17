@@ -11,7 +11,7 @@
       <div id="myform-row" class="row justify-content-center align-items-center mb-5">
         <div id="myform-column" class="col-md-6">
           <div id="myform-box" class="col-md-12">
-            <form id="myform-form" class="form" action="register_action.php" method="post">
+            <form id="myform-form" class="form" action="actions/register_action.php" method="post">
               <h2 class="text-center text-info">Inscription</h2>
               <!-- alert -->
               <?php
@@ -22,7 +22,7 @@
                 echo '<div class="alert alert-danger" role="alert">Le code est incorrect !</div>';
               }
               ?>
-              <form action="register_action.php" method="post">
+              <form action="actions/register_action.php" method="post">
                 <div class="form-group">
                   <label for="prenom">Prénom*</label>
                   <input type="text" id="prenom" name="prenom" class="form-control noborder" maxlength="30" pattern="[A-Za-zàâäáéèëêïîôöùûü\-]{2,30}" required>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="form-group">
                   <div class="text-center my-3">
-                    <img src="captcha.php">
+                    <img src="commun/captcha.php">
                   </div>
                   <input type="text" name="captcha" id="captcha" class="form-control noborder" placeholder="Entrez le code" required>
                 </div>

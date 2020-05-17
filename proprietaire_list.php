@@ -1,7 +1,7 @@
 <?php
 // Imports
-include_once 'header_inc.php';
-include_once 'db_connect_inc.php';
+include_once 'commun/header_inc.php';
+include_once 'commun/db_connect_inc.php';
 include('head.php');
 include('nav_admin.php');
 ?>
@@ -67,7 +67,7 @@ include('nav_admin.php');
         }
         // Ajoute boutons MAJ et SUPPR
         $html .= '<td><a class="text-warning" href="proprietaire_list.php?id=' . $row['Code'] . '"><i class="fas fa-edit h4 p-2"></i></a>';
-        $html .= '<a class="text-danger" href="proprietaire_suppr.php?id=' . $row['Code'] . '"><i class="fas fa-trash-alt h4 p-2"></i></a></td>';
+        $html .= '<a class="text-danger" href="actions/proprietaire_suppr.php?id=' . $row['Code'] . '"><i class="fas fa-trash-alt h4 p-2"></i></a></td>';
         $html .= '</tr>';
       }
       $html .= '</tbody>';

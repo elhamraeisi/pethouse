@@ -1,7 +1,7 @@
 <?php
 // Imports
-include_once 'header_inc.php';
-include_once 'db_connect_inc.php';
+include_once 'commun/header_inc.php';
+include_once 'commun/db_connect_inc.php';
 include('head.php');
 include('nav_admin.php');
 ?>
@@ -71,7 +71,7 @@ include('nav_admin.php');
         }
         // Ajoute boutons MAJ et SUPPR
         $html .= '<td><a class="text-warning" href="admin.php?id=' . $row['Code'] . '" ><i class="fas fa-edit h4 p-2"></i></a>';
-        $html .= '<a class="text-danger" href="animal_suppr.php?id=' . $row['Code'] . '"><i class="fas fa-trash-alt h4 p-2"></i></a></td>';
+        $html .= '<a class="text-danger" href="actions/animal_suppr.php?id=' . $row['Code'] . '"><i class="fas fa-trash-alt h4 p-2"></i></a></td>';
         $html .= '</tr>';
       }
       $html .= '</tbody>';

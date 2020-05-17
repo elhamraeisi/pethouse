@@ -1,6 +1,6 @@
 <?php
 // Import
-include_once 'db_connect_inc.php';
+include_once '../commun/db_connect_inc.php';
 
 // Récupération des valeurs du formulaire : 2nde itération
 foreach ($_POST as $key => $val) {
@@ -91,7 +91,7 @@ try {
   }
   $data = $pdo->prepare($sql);
   $data->execute($params);
-  header('location:proprietaire_list.php');
+  header('location:../proprietaire_list.php');
 } catch (PDOException $err) {
   echo $err->getMessage();
 }
