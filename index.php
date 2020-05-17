@@ -43,7 +43,7 @@ include_once 'db_connect_inc.php'; // Connexion à PDO
   </div>
 
   <div class="bg-light mx-5 my-5">
-    <h1 class="text-info">Animaux</h1>
+    <h1 class="text-info ">Animaux</h1>
     <div class="row">
       <?php
       // Exécute la requête SQL
@@ -61,15 +61,17 @@ include_once 'db_connect_inc.php'; // Connexion à PDO
       // Lecture du dataset et défibit les cards
       $html = '';
       while ($row = $data->fetch()) {
-        $html .= '<div class="card-animal m-3 justify-content-center" style="width: 23.5rem;">';
-        $html .= '<img src="' . ($row['photo'] === null ? 'pics/animal_generic.png' : $row['photo']) . '" class="cover" />';
+        $html .= '<a href="animal_details.php?id=' . $row['id'] . '" style="text-decoration-line: none;">';
+        $html .= '<div class="card-animal m-3 justify-content-center" style="width: 16.9rem;">';
+        $html .= '<img src="' . ($row['photo'] === null ? 'pics/animal_generic.png' : $row['photo']) . '" class="cover" style="border-top-left-radius:18px; border-top-right-radius:18px;" />';
         $html .= '<div class="card-body">';
-        $html .= '<h5 class="card-title h3 text-info" style="font-family:brandon-grotesque, sans-serif; font-weight:600;">' . $row['nom'] . '</h5>';
-        $html .= '<p class="card-text">Disponibilité : ' . $row['disponibilite'] . '<br/>';
-        $html .= 'Prix : ' . $row['prix'] . '‎€</p>';
+        $html .= '<h2 class="card-title" style="text-transform: capitalize;">' . $row['nom'] . '</h2>';
+        $html .= '<h3 class="card-title">' . $row['prix'] . '‎€</h3>';
+        $html .= '<h5 class="card-text">Disponibilité : ' . $row['disponibilite'] . '</h5>';
         //$html .= '<a class="btn btn-info" href="animal_details.php?id=' . $row['id'] . '">Détails...</a>';
         $html .= '</div>';
         $html .= '</div>';
+        $html .= '</a>';
       }
       echo $html;
       ?>

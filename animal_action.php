@@ -60,13 +60,7 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE)
     $base64 = 'data:' . $file_type . ';base64,' . base64_encode($bin); // Prête à afficher dans SRC
     unset($params[':MAX_FILE_SIZE']); // Supprime l'entrée du tableau de paramètres
     $params[':photo'] = $base64; // Ajoute l'entrée au tableau de paramètres
-    //echo $base64;
-    // 2. Téléverse le fichier dans le dossier UPLOAD
-    if (!move_uploaded_file($file_temp, 'uploads/' . $file_name)) {
-      echo '<p>Erreur dans le téléversement du fichier : ' . $file_name;
-      echo '<a href="index.php">Retour page d\'accueil</a>';
-      //exit(); // die()
-    }
+
   } else {
     // Affiche les erreurs du tableau
     foreach ($errors as $error) {

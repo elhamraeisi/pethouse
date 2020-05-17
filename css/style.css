@@ -2,6 +2,11 @@ body {
   background-color: #f8f9fa;
   font-family: 'Brandon Grotesque Light', sans-serif;
 }
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+}
 .background-blue{
  background-color: #0e3569;
  background: radial-gradient(ellipse at bottom 20% left 50%,#055594 1%,#05508a 22%,#03294e 88%,#011933 100%);
@@ -9,12 +14,37 @@ body {
 .background-light-blue{
   background-color: rgb(41, 126, 171);
  }
+ .background-light-grey-solid {
+ background-color: #f0f0f0;
+}
 h1{
 font-family: 'Brandon Grotesque Black', sans-serif;
-font-size: 3.2rem;
+font-size: 2.2rem;
+color: #0e3569;
 }
-h2,h3{
-  font-family: 'Kaushan Script', cursive;
+h2{
+  font-family: 'Brandon Grotesque Black', sans-serif;
+  font-size: 2.6rem;
+  color: #0e3569;
+}
+h3{
+  font-family: 'Brandon Grotesque Black', sans-serif;
+  color: #444444;
+}
+h5{
+  font-family: 'Brandon Grotesque Light', sans-serif;
+  color: #444444;
+}
+.detail{
+  font-family: 'Brandon Grotesque Black', sans-serif;
+  font-size:1.2rem;
+  color: #444444;
+}
+.detail-info{
+  font-family: 'Brandon Grotesque Light', sans-serif;
+  font-size:1.2rem;
+  font-weight: 500;
+  color: #444444;
 }
 .billboard p{
   color: #fff;
@@ -63,6 +93,15 @@ h2,h3{
   border-top: 0;
   border-radius: 0;
 }
+.text-primary{
+  color: #297eab !important;
+}
+.text-info{
+  color: #0e3569 !important;
+}
+.text-dark{
+  color: #444444 !important;
+}
 .table-title {        
   padding-top: 15px;
   background: #17a2b8;
@@ -105,11 +144,14 @@ h2,h3{
   width: 100%;
   height: 300px;
 }
-
+.cover-detail{
+  object-fit: cover;
+  width: 100%;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 h1{
-  font-size: 1.9rem;
+  font-size: 2.6rem;
 }
 .billboard img {
   width: 200px;
@@ -120,8 +162,9 @@ h1{
 .search-placeholder{
   font-size: 1.2rem;
 }
-.btn-dsg{
+.btn-primary{
   font-size: 0.6rem;
+  padding: 0.1rem 0.2rem;
 }
 .search-btn{
   font-size: 0.6rem;
@@ -140,6 +183,6 @@ h1{
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 h1{
-  font-size: 4.5rem;
+  font-size: 3.5rem;
 }
 }

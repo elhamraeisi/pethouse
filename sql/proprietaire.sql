@@ -1,4 +1,4 @@
-USE pethouse;
+USE PetHouse;
 
 CREATE TABLE IF NOT EXISTS proprietaire (
     id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS proprietaire (
     sexe ENUM('F','M','N') DEFAULT 'N',
     ddn DATE,
     adresse VARCHAR(60),
+    lat float,
+    lon float,
     tel VARCHAR(20),
     mail VARCHAR(60),
     photo LONGBLOB

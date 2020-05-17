@@ -16,6 +16,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     'sexe' => '',
     'ddn' => '',
     'adresse' => '',
+    'lat' => 0.0,
+    'lon' => 0.0,
     'tel' => '',
     'mail' => ''
   );
@@ -57,6 +59,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <div class="group-control pt-4">
               <label for="adresse">Adresse*</label>
               <input type="text" class="form-control noborder" value="<?php echo $row['adresse'] ?>" id="adresse" name="adresse" required>
+              <input type="text" value="<?php echo $row['lat'] ?>" id="lat" name="lat">
+              <input type="text" value="<?php echo $row['lon'] ?>" id="lon" name="lon">
+
             </div>
             <div class="row pt-4">
               <div class="col-md-6">
@@ -79,10 +84,22 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             </div>
           </form>
           <script>
+            var placeSearch, autocomplete;
+
             function activatePlacesSearch() {
+
               var input = document.getElementById('adresse');
-              var autocomplete = new google.maps.places.Autocomplete(input);
-              autocomplete.setFields(['place_id'])
+              autocomplete = new google.maps.places.Autocomplete(input);
+              //autocomplete.setFields(['place_id'])
+              autocomplete.addListener('place_changed', fillInAddress);
+
+            }
+
+            function fillInAddress() {
+              var place = autocomplete.getPlace();
+              console.log(place.geometry.location)
+              $('#lat').val(place.geometry.location.lat())
+              $('#lon').val(place.geometry.location.lng())
             }
           </script>
           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUDt3l_44xD1JPX51qm2_EPOfEqkCGk9g&libraries=places&callback=activatePlacesSearch"></script>

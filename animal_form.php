@@ -102,7 +102,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             </div>
             <div class="group-control pt-4">
               <label for="description">Description*</label>
-              <textarea class="form-control noborder" value="<?php echo $row['description'] ?>" id="description" name="description" rows="5" cols="33" required></textarea>
+              <textarea class="form-control noborder" id="description" name="description" rows="5" cols="33" required> <?php echo $row['description'] ?></textarea>
             </div>
             <div class="group-control pt-4">
               <label for="photo">Photo</label>

@@ -5,7 +5,7 @@
 <body class="bg-info">
   <div id="myform">
     <div class="text-center pb-4">
-      <img id="logo" src="uploads/pethouse-logo.png" class="mt-5 w-25" />
+      <img id="logo" src="pics/pethouse-logo.png" class="mt-5 w-25" />
     </div>
     <div class="container">
       <div id="myform-row" class="row justify-content-center align-items-center">
