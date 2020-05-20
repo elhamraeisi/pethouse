@@ -33,7 +33,7 @@ if (isset($_POST['mail']) && !empty($_POST['mail']) && isset($_POST['pass']) && 
       $_SESSION['connection_time'] = date('Y-m-d h:i:s');
       $_SESSION['ip'] = $_SERVER['REMOTE_ADDR']; // Pour IP Localisation par exemple
       // Créer un cookie
-      setcookie('subscriber', json_encode($_SESSION), time() + 30 * 24 * 60 * 60);
+      setcookie('pethouse_user', json_encode($_SESSION), time() + 30 * 24 * 60 * 60);
       // Redirection vers INDEX
       header('location:../index.php');
     } else {

@@ -2,6 +2,10 @@ body {
   background-color: #f8f9fa;
   font-family: 'Brandon Grotesque Light', sans-serif;
 }
+#toast-container > .toast {
+  font-size: 24px;
+  font-family: 'Brandon Grotesque Light', sans-serif;
+}
 #map {
   width: 100%;
   height: 400px;
@@ -20,12 +24,10 @@ body {
 h1{
 font-family: 'Brandon Grotesque Black', sans-serif;
 font-size: 2.2rem;
-color: #0e3569;
 }
 h2{
   font-family: 'Brandon Grotesque Black', sans-serif;
   font-size: 2.6rem;
-  color: #0e3569;
 }
 h3{
   font-family: 'Brandon Grotesque Black', sans-serif;
@@ -62,7 +64,7 @@ h5{
   border-radius: 0.5rem;
   border-color: #c9c8c8;
 }
-.btn-primary{
+.btn-darkBlue{
   font-size: 1.4rem;
   line-height: 1.4rem;
   font-weight: 700;
@@ -76,8 +78,9 @@ h5{
   border: solid 3px transparent;
 }
 
-.btn-primary:hover {
+.btn-darkBlue:hover {
   background-color: rgb(41, 126, 171); 
+  color: #fff;
 }
 #myform .container #myform-row #myform-column #myform-box {
   padding-top: 30px;
@@ -93,18 +96,26 @@ h5{
   border-top: 0;
   border-radius: 0;
 }
-.text-primary{
+.text-info{
   color: #297eab !important;
 }
-.text-info{
+.text-primary{
   color: #0e3569 !important;
 }
 .text-dark{
   color: #444444 !important;
 }
+.btn-primary{
+  color: #fff;
+  background-color: #0e3569;
+  border-color: #0e3569;
+}
+.btn-primary:hover{
+  background-color: #297eab;
+}
 .table-title {        
   padding-top: 15px;
-  background: #17a2b8;
+  background: rgb(41, 126, 171);;
   color: #fff;
   padding: 16px 30px;
   border-radius: 3px 3px 0 0;
@@ -151,7 +162,7 @@ h5{
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 h1{
-  font-size: 2.6rem;
+  font-size: 1.9rem;
 }
 .billboard img {
   width: 200px;

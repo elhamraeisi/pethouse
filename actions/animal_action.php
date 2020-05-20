@@ -1,3 +1,4 @@
+
 <?php
 // Import
 include_once '../commun/db_connect_inc.php';
@@ -10,8 +11,6 @@ foreach ($_POST as $key => $val) {
     $params[':' . $key] = null;
   }
 }
-
-
 
 // Récupération du fichier à téléverser
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE) {
@@ -72,8 +71,15 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE)
 } else {
   // Si pas de photo choisie
   unset($params[':MAX_FILE_SIZE']);
-  $params[':photo'] = null;
+
+  //si on ajoute un nouvel animal et aucune photo est choisie on mets la photo à NULL
+  if (!isset($_GET['id']) && empty($_GET['id'])) {
+    $params[':photo'] = null;
+  }
 }
+
+
+
 // Préparation et exécution requête
 try {
 
@@ -83,11 +89,16 @@ try {
   } else {
 
     // Si id n'est pas vide alors INSERT
-    $sql = 'UPDATE animal SET nom=:nom, id_proprietaire=:id_proprietaire, id_generique=:id_generique, sexe=:sexe, couleur=:couleur, poids=:poids, disponibilite=:disponibilite, vaccine=:vaccine, identifie=:identifie, description=:description, prix=:prix, ddn=:ddn, photo=:photo WHERE id=' . $_GET['id'];
+    $sql = 'UPDATE animal SET nom=:nom, id_proprietaire=:id_proprietaire, id_generique=:id_generique, sexe=:sexe, couleur=:couleur, poids=:poids, disponibilite=:disponibilite, vaccine=:vaccine, identifie=:identifie, description=:description, prix=:prix, ddn=:ddn';
+
+    if (!empty($params[':photo']))
+      $sql .= ', photo=:photo ';
+
+    $sql .= ' WHERE id=' . $_GET['id'];
   }
   $data = $pdo->prepare($sql);
   $data->execute($params);
-  header('location:../admin.php');
+  header('location:../admin.php?saveSuccess=true');
 } catch (PDOException $err) {
   echo $err->getMessage();
 }

@@ -59,8 +59,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <div class="group-control pt-4">
               <label for="adresse">Adresse*</label>
               <input type="text" class="form-control noborder" value="<?php echo $row['adresse'] ?>" id="adresse" name="adresse" required>
-              <input type="text" value="<?php echo $row['lat'] ?>" id="lat" name="lat">
-              <input type="text" value="<?php echo $row['lon'] ?>" id="lon" name="lon">
+              <input type="hidden" value="<?php echo $row['lat'] ?>" id="lat" name="lat">
+              <input type="hidden" value="<?php echo $row['lon'] ?>" id="lon" name="lon">
 
             </div>
             <div class="row pt-4">

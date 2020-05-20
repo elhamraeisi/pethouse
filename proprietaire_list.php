@@ -12,10 +12,10 @@ include('nav_admin.php');
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
-            <h2>Liste des <b>proprietaire</b></h2>
+            <h2>Proprietaires</h2>
           </div>
           <div class="col-sm-6 d-flex flex-row-reverse">
-            <a type="submit" class="btn btn-outline-light ml-3 pt-3" data-toggle="modal" data-target="#proprietaireFormModal"><i class="fas fa-plus-circle pr-1"></i><span>Ajouter un proprietaire</span></a>
+            <a type="submit" class="btn btn-outline-light ml-3 pt-3" data-toggle="modal" data-target="#proprietaireFormModal"><i class="fas fa-plus-circle pr-1"></i><span>Ajouter</span></a>
             <form action="proprietaire_list.php" method="GET" class="has-search mt-2">
               <span class="fa fa-search form-control-feedback"></span>
               <input class="form-control rounded-pill bg-transparent border-white text-white" type="search" name="search" placeholder="Nom ou prénom">
@@ -100,7 +100,7 @@ include('nav_admin.php');
                 evt.preventDefault();
                 let answer = confirm('Voulez-vous vraiment supprimer cette ligne ?');
                 if (answer) {
-                  location.href = evt.target.href;
+                  location.href = this.getAttribute('href');
                 }
               },
               false

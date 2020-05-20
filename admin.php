@@ -11,11 +11,11 @@ include('nav_admin.php');
     <div class="table-wrapper">
       <div class="table-title">
         <div class="row">
-          <div class="col-sm-6">
-            <h2>Liste des <b></b>animals</h2>
+          <div class="col-sm-4">
+            <h2>Animaux</h2>
           </div>
-          <div class="col-sm-6 d-flex flex-row-reverse">
-            <a class="btn btn-outline-light ml-3 pt-3" data-toggle="modal" data-target="#animalFormModal"><i class="fas fa-plus-circle pr-1"></i><span>Ajouter un animal</span></a>
+          <div class="col-sm-8 d-flex flex-row-reverse">
+            <a class="btn btn-outline-light ml-3 pt-3" data-toggle="modal" data-target="#animalFormModal"><i class="fas fa-plus-circle pr-1"></i><span>Ajouter</span></a>
             <form action="admin.php" method="GET" class="has-search mt-2">
               <span class="fa fa-search form-control-feedback"></span>
               <input class="form-control rounded-pill bg-transparent border-white text-white" type="search" name="search" placeholder="Nom">
@@ -28,7 +28,7 @@ include('nav_admin.php');
     <?php
     try {
       // Préparation et exécution requête
-      $sql = 'SELECT photo AS "Photo", id AS "Code", nom AS "Nom", sexe AS "Sexe", couleur AS "Couleur", poids AS "Poids", disponibilite AS "Disponibilité", vaccine AS "Vacciné", identifie AS "Identifié", prix AS "Prix", ddn AS "Nés" FROM animal';
+      $sql = 'SELECT photo AS "Photo", id AS "Code", nom AS "Nom", sexe AS "Sexe", couleur AS "Couleur", poids AS "Poids", disponibilite AS "Disponibilité", vaccine AS "Vacciné", identifie AS "Identifié", prix AS "Prix", ddn AS "Né(e)" FROM animal';
       // chercher un animal par son nom
       if (!empty($_GET['search']))
         $sql .= ' WHERE nom like "%' . $_GET['search'] . '%"';
@@ -91,6 +91,15 @@ include('nav_admin.php');
         </div>
       </div>
     </div>
+    <div class="modal fade" id="generiqueFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content p-0">
+          <div class="modal-body p-0">
+            <?php include('generique_form.php'); ?>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
       window.addEventListener(
@@ -105,7 +114,7 @@ include('nav_admin.php');
                 evt.preventDefault();
                 let answer = confirm('Voulez-vous vraiment supprimer cette ligne ?');
                 if (answer) {
-                  location.href = evt.target.href;
+                  location.href = this.getAttribute('href');
                 }
               },
               false
@@ -125,6 +134,20 @@ include('nav_admin.php');
           var urlParams = new URLSearchParams(window.location.search);
           if (urlParams.has('id')) {
             $('#animalFormModal').modal('show')
+          }
+          //si on a le parametre 'saveSuccess' dans l'url on affiche le toast
+          if (urlParams.has('saveSuccess')) {
+            toastr.success("Enregistré avec succès", undefined, {
+              timeOut: 2000,
+              positionClass: "toast-bottom-right"
+            })
+          }
+          //si on a le parametre 'deleteSuccess' dans l'url on affiche le toast
+          if (urlParams.has('deleteSuccess')) {
+            toastr.success("Supprimé avec succès", undefined, {
+              timeOut: 2000,
+              positionClass: "toast-bottom-right"
+            })
           }
         },
         false

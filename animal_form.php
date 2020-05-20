@@ -25,7 +25,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
   );
   $update = false;
 }
-
 ?>
 <div id="myform">
   <div class="container">
@@ -36,7 +35,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
           <form id="myform-form" class="form" action="actions/animal_action.php<?php echo ($update ? '?id=' . $_GET['id'] : ''); ?>" method="post" enctype="multipart/form-data">
             <div class="row pt-4">
               <div class="col-md-6">
-                <label for="generique">Générique</label>
+                <label for="generique">Générique*</label>
+                <a href="generique_list.php" type="submit" class="badge badge-secondary ml-3">Ajouter</a>
                 <select class="form-control" name="id_generique" value="<?php echo $row['id_generique'] ?>" id="id_generique">
                   <?php
                   $sql = 'SELECT * from generique';
@@ -50,7 +50,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
               </div>
               <div class="col-md-6">
                 <label for="proprietaire">Propriétaire*</label>
-                <a href="proprietaire_form.php" type="submit" class="badge badge-secondary ml-3">Ajouter</a>
+                <a href="proprietaire_list.php" type="submit" class="badge badge-secondary ml-3">Ajouter</a>
                 <select class="form-control" name="id_proprietaire" value="<?php echo $row['id_proprietaire'] ?>" id="id_proprietaire" required>
                   <?php
                   $sql = 'SELECT * from proprietaire';
@@ -73,7 +73,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <div class="row pt-4">
               <div class="col-md-6">
                 <label for="nom">Nom*</label>
-                <input type="text" class="form-control noborder" value="<?php echo $row['nom'] ?>" id="nom" name="nom" maxlength="50" required>
+                <input type="text" class="form-control noborder" value="<?php echo $row['nom'] ?>" id="nom" name="nom" maxlength="32" required>
               </div>
               <div class="col-md-6">
                 <label for="ddn">Date de naissance</label>
@@ -102,7 +102,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             </div>
             <div class="group-control pt-4">
               <label for="description">Description*</label>
-              <textarea class="form-control noborder" id="description" name="description" rows="5" cols="33" required> <?php echo $row['description'] ?></textarea>
+              <textarea class="form-control noborder" id="description" name="description" rows="5" cols="33" maxlength="2048" required> <?php echo $row['description'] ?></textarea>
             </div>
             <div class="group-control pt-4">
               <label for="photo">Photo</label>

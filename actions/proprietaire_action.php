@@ -70,13 +70,13 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE)
     }
   }
 } else {
-  echo 'no photo';
-
   // Si pas de photo choisie
   unset($params[':MAX_FILE_SIZE']);
-  $params[':photo'] = null;
+  //si on ajoute un nouveau proprietaire et aucune photo est choisie on mets la photo à NULL
+  if (!isset($_GET['id']) && empty($_GET['id'])) {
+    $params[':photo'] = null;
+  }
 }
-
 // Préparation et exécution requête
 try {
   if (empty($params[':sexe']))
@@ -87,7 +87,12 @@ try {
     $sql = 'INSERT INTO proprietaire(prenom, nom, sexe, ddn, adresse,lat,lon, tel, mail, photo) VALUES(:prenom, :nom, :sexe, :ddn, :adresse,:lat,:lon, :tel, :mail, :photo)';
   } else {
     // Si id n'est pas vide alors INSERT
-    $sql = 'UPDATE proprietaire SET prenom=:prenom, nom=:nom, sexe=:sexe, ddn=:ddn, adresse=:adresse,lat=:lat,lon=:lon ,tel=:tel, mail=:mail, photo=:photo WHERE id=' . $_GET['id'];
+    $sql = 'UPDATE proprietaire SET prenom=:prenom, nom=:nom, sexe=:sexe, ddn=:ddn, adresse=:adresse,lat=:lat,lon=:lon ,tel=:tel, mail=:mail ';
+
+    if (!empty($params[':photo']))
+      $sql .= ', photo=:photo ';
+
+    $sql .= ' WHERE id=' . $_GET['id'];
   }
   $data = $pdo->prepare($sql);
   $data->execute($params);

@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS animal (
     identifie TINYINT(1),
     prix DECIMAL(10,2),
     disponibilite DATE,
-    description VARCHAR(1024),
+    description VARCHAR(2048),
     insert_date DATE NOT NULL DEFAULT current_timestamp(),
     update_date DATE,
     FOREIGN KEY (id_proprietaire) REFERENCES proprietaire(id),
