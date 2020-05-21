@@ -10,6 +10,7 @@
         <a class="nav-link active" style="font-family: 'Brandon Grotesque Black', sans-serif;" href="generique_list.php">GÉNÉRIQUES <span class="sr-only">(current)</span></a>
       </div>
     </div>
+    <a href="index.php" class="h3 text-white pr-3 pt-2"><i class="fas fa-globe"></i></a>
     <a href="actions/logout_action.php" class="h3 pt-2"><i class="fas fa-power-off text-white"></i></a>
   </div>
 </nav>

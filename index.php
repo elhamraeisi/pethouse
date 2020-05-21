@@ -3,12 +3,9 @@
 include_once 'commun/constants_inc.php';
 include_once 'commun/db_connect_inc.php'; // Connexion à PDO
 include_once 'commun/header_inc.php'; // Connexion à PDO
-
+include('head.php');
+include('nav_visitor.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<?php include('head.php'); ?>
-<?php include('nav_visitor.php'); ?>
 
 <body>
   <div class="background-blue">
@@ -29,7 +26,7 @@ include_once 'commun/header_inc.php'; // Connexion à PDO
       </div>
     </div>
     <div class="col-12 px-0">
-      <div class="background-light-blue h-100 p-5">
+      <div class="background-light-blue p-5">
         <div class="card rounded">
           <div class="card-body p-5">
             <form action="index.php#liste_animaux" class="w-100 d-flex align-items-end">
@@ -101,6 +98,9 @@ include_once 'commun/header_inc.php'; // Connexion à PDO
         $html .= '</div>';
         $html .= '</div>';
         $html .= '</a>';
+      }
+      if (empty($html)) {
+        $html = '<div class="text-center w-100 m-5 p-5" > <h2 class="card-title text-secondary text-center m-5 p-5">Aucun animal n\'a été trouvé</h2></div>';
       }
       echo $html;
       ?>

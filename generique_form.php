@@ -1,4 +1,5 @@
 <?php
+include_once 'commun/header_inc_admin.php';
 include 'commun/db_connect_inc.php';
 
 //Si on est en mode update (si hot_id dans l'URL)

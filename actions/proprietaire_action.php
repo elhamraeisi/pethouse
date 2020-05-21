@@ -96,7 +96,7 @@ try {
   }
   $data = $pdo->prepare($sql);
   $data->execute($params);
-  header('location:../proprietaire_list.php');
+  header('location:../proprietaire_list.php?saveSuccess=true');
 } catch (PDOException $err) {
   echo $err->getMessage();
 }

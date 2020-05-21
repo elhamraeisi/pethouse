@@ -4,7 +4,8 @@ include_once '../commun/constants_inc.php';
 include_once '../commun/db_connect_inc.php'; // Se connecter à la BDD
 //include_once 'functions_inc.php';
 
-
+// Crée ou restaure une session
+session_start();
 
 // Vérifier que l'adresse mail est nouvelle (pas de doublon)
 $sql = 'SELECT COUNT(*) AS NumberOfUser FROM utilisateur WHERE mail = ?';
@@ -34,11 +35,12 @@ if ((int) $row['NumberOfUser'] === 0) {
       ':pass' => $hash
     );
     $data->execute($params);
+    header('location:../login.php');
   } else {
-    header('location:../register.php?captcha=false');
+    header('location:../register_form.php?captcha=false');
   }
-  // Renvoie vers INDEX
-  // header('location:index.php');
+
+  // Renvoie vers LOGIN
 } else {
-  header('location:../register.php?exists=true');
+  header('location:../register_form.php?exists=true');
 }

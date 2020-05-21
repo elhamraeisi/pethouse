@@ -33,7 +33,6 @@ $propr = $data->fetch();
             </div>
             <div class="col-lg-6 pt-4">
               <a href=<?php echo 'http://192.168.64.2/animaux/wordpress/?page_id=131&proprEmail=' . ($propr['mail']) ?> class="btn btn-success p-3"><i class="far fa-envelope pr-2"></i>Envoyer un message</a>
-              <button onclick="myFunction()">Click me</button>
             </div>
             <div class="card-body">
               <h3 class="text-primary"><?php echo $propr['prenom'] . $propr['nom'] ?></h3>
@@ -55,7 +54,7 @@ $propr = $data->fetch();
             <h3 class="text-primary"><?php echo $animal['prix'] ?>€</h3>
           </div>
         </div>
-        <p>Disponibilité à partir de : <?php echo $animal['disponibilite'] ?></p>
+        <p>Disponible à partir de : <?php echo $animal['disponibilite'] ?></p>
         <p class="detail"> <span class="detail-info"> <?php echo $animal['description'] ?></span></p>
         <div class="row">
           <div class="col-lg-6">
@@ -69,39 +68,41 @@ $propr = $data->fetch();
             <p class="detail">Date de naissance : <span class="detail-info"> <?php echo $animal['ddn'] ?></span></p>
           </div>
         </div>
+        <div class="w-100 text-right font-italic text-muted mt-4">
+          <p>Publié le : <?php echo $animal['insert_date'] ?> </p>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // Initialize and add the map
-    function initMap() {
-      // The location of Uluru
-      var uluru = {
-        lat: <?php echo $propr['lat']; ?>,
-        lng: <?php echo $propr['lon']; ?>
-      };
-      // The map, centered at Uluru
-      var map = new google.maps.Map(
-        document.getElementById('map'), {
-          zoom: 12,
-          center: uluru
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        var uluru = {
+          lat: <?php echo $propr['lat']; ?>,
+          lng: <?php echo $propr['lon']; ?>
+        };
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+          document.getElementById('map'), {
+            zoom: 12,
+            center: uluru
+          });
+        console.log(map)
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
         });
-      console.log(map)
-      // The marker, positioned at Uluru
-      var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-      });
-    }
-  </script>
-  <!--Load the API from the specified URL
+      }
+    </script>
+    <!--Load the API from the specified URL
     * The async attribute allows the browser to render the page while the API loads
     * The key parameter will contain your own API key (which is not needed for this tutorial)
     * The callback parameter executes the initMap() function
     -->
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUDt3l_44xD1JPX51qm2_EPOfEqkCGk9g&callback=initMap">
-  </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUDt3l_44xD1JPX51qm2_EPOfEqkCGk9g&callback=initMap">
+    </script>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
 <?php
+include_once 'commun/header_inc_admin.php';
 include 'commun/db_connect_inc.php';
 
 //Si on est en mode update (si hot_id dans l'URL)
@@ -65,9 +66,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             </div>
             <div class="group-control pt-4">
               <label for="sexe">Sexe</label>
-              <input type="radio" name="sexe" id="male" value="M" <?php echo $row['sexe'] == 'M' ? 'checked' : '' ?>>
+              <input type="radio" name="sexe" id="male" value="M" <?php echo $row['sexe'] == 'M' ? 'checked' : '' ?> required>
               <label for="male">Mâle</label>
-              <input type="radio" name="sexe" id="femelle" value="F" <?php echo $row['sexe'] == 'F' ? 'checked' : '' ?>>
+              <input type="radio" name="sexe" id="femelle" value="F" <?php echo $row['sexe'] == 'F' ? 'checked' : '' ?> required>
               <label for="femelle">Femelle</label>
             </div>
             <div class="row pt-4">

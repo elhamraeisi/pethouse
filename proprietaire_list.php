@@ -1,7 +1,7 @@
 <?php
 // Imports
-include_once 'commun/header_inc.php';
 include_once 'commun/db_connect_inc.php';
+include_once 'commun/header_inc_admin.php';
 include('head.php');
 include('nav_admin.php');
 ?>
@@ -120,6 +120,20 @@ include('nav_admin.php');
           var urlParams = new URLSearchParams(window.location.search);
           if (urlParams.has('id')) {
             $('#proprietaireFormModal').modal('show')
+          }
+          //si on a le parametre 'saveSuccess' dans l'url on affiche le toast
+          if (urlParams.has('saveSuccess')) {
+            toastr.success("Enregistré avec succès", undefined, {
+              timeOut: 2000,
+              positionClass: "toast-bottom-right"
+            })
+          }
+          //si on a le parametre 'deleteSuccess' dans l'url on affiche le toast
+          if (urlParams.has('deleteSuccess')) {
+            toastr.success("Supprimé avec succès", undefined, {
+              timeOut: 2000,
+              positionClass: "toast-bottom-right"
+            })
           }
         },
         false

@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS animal (
     disponibilite DATE,
     description VARCHAR(2048),
     insert_date DATE NOT NULL DEFAULT current_timestamp(),
-    update_date DATE,
-    FOREIGN KEY (id_proprietaire) REFERENCES proprietaire(id),
-    FOREIGN KEY (id_generique) REFERENCES generique(id)
+    FOREIGN KEY (id_proprietaire) REFERENCES proprietaire(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_generique) REFERENCES generique(id) ON DELETE CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;

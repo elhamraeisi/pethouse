@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS proprietaire (
     nom CHAR(30) NOT NULL,
     sexe ENUM('F','M','N') DEFAULT 'N',
     ddn DATE,
-    adresse VARCHAR(60),
+    adresse VARCHAR(256),
     lat float,
     lon float,
     tel VARCHAR(20),

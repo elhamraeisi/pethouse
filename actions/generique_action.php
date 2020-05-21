@@ -24,7 +24,7 @@ try {
   }
   $data = $pdo->prepare($sql);
   $data->execute($params);
-  header('location:../generique_list.php');
+  header('location:../generique_list.php?saveSuccess=true');
 } catch (PDOException $err) {
   echo $err->getMessage();
 }

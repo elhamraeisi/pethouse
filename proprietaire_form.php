@@ -1,4 +1,5 @@
 <?php
+include_once 'commun/header_inc_admin.php';
 include 'commun/db_connect_inc.php';
 
 //Si on est en mode update (si hot_id dans l'URL)
@@ -44,9 +45,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             </div>
             <div class="group-control pt-4">
               <label for="sexe">Sexe</label>
-              <input type="radio" name="sexe" value="F" id="femme" <?php echo $row['sexe'] == 'F' ? 'checked' : '' ?>>
+              <input type="radio" name="sexe" value="F" id="femme" <?php echo $row['sexe'] == 'F' ? 'checked' : '' ?> required>
               <label for="femme">Femme</label>
-              <input type="radio" name="sexe" value="M" id="homme" <?php echo $row['sexe'] == 'M' ? 'checked' : '' ?>>
+              <input type="radio" name="sexe" value="M" id="homme" <?php echo $row['sexe'] == 'M' ? 'checked' : '' ?> required>
               <label for="homme">Homme</label>
             </div>
             </select>
@@ -66,7 +67,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <div class="row pt-4">
               <div class="col-md-6">
                 <label for="tel">Tél*</label>
-                <input type="number" class="form-control noborder" value="<?php echo $row['tel'] ?>" id="tel" name="tel" required>
+                <input type="tel" class="form-control noborder" value="<?php echo $row['tel'] ?>" id="tel" name="tel" minlength="10" required>
               </div>
               <div class="col-md-6">
                 <label for="mail">Mail*</label>

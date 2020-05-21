@@ -1,6 +1,6 @@
 <?php
 // Imports
-include_once 'commun/header_inc.php';
+include_once 'commun/header_inc_admin.php';
 include_once 'commun/db_connect_inc.php';
 include('head.php');
 include('nav_admin.php');
@@ -100,57 +100,58 @@ include('nav_admin.php');
         </div>
       </div>
     </div>
+  </div>
 
-    <script>
-      window.addEventListener(
-        'load',
-        function() {
+  <script>
+    window.addEventListener(
+      'load',
+      function() {
 
-          let buttons = document.querySelectorAll('a.text-danger');
-          for (let i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener(
-              'click',
-              function(evt) {
-                evt.preventDefault();
-                let answer = confirm('Voulez-vous vraiment supprimer cette ligne ?');
-                if (answer) {
-                  location.href = this.getAttribute('href');
-                }
-              },
-              false
-            );
-          }
-          //Quand on ferme le modal si le parametre id se trouve dans l'url
-          //on refresh la page sans le parametre id
-          $('#animalFormModal').on('hidden.bs.modal', function() {
-            var urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('id')) {
-              window.location.href = 'admin.php';
-            }
-          });
-          //Pour afficher automatiquement le modal de formumlaire 
-          //si le parametre id se trouve dans l'url
-          //exemple : admin.php?id=10
+        let buttons = document.querySelectorAll('a.text-danger');
+        for (let i = 0; i < buttons.length; i++) {
+          buttons[i].addEventListener(
+            'click',
+            function(evt) {
+              evt.preventDefault();
+              let answer = confirm('Voulez-vous vraiment supprimer cette ligne ?');
+              if (answer) {
+                location.href = this.getAttribute('href');
+              }
+            },
+            false
+          );
+        }
+        //Quand on ferme le modal si le parametre id se trouve dans l'url
+        //on refresh la page sans le parametre id
+        $('#animalFormModal').on('hidden.bs.modal', function() {
           var urlParams = new URLSearchParams(window.location.search);
           if (urlParams.has('id')) {
-            $('#animalFormModal').modal('show')
+            window.location.href = 'admin.php';
           }
-          //si on a le parametre 'saveSuccess' dans l'url on affiche le toast
-          if (urlParams.has('saveSuccess')) {
-            toastr.success("Enregistré avec succès", undefined, {
-              timeOut: 2000,
-              positionClass: "toast-bottom-right"
-            })
-          }
-          //si on a le parametre 'deleteSuccess' dans l'url on affiche le toast
-          if (urlParams.has('deleteSuccess')) {
-            toastr.success("Supprimé avec succès", undefined, {
-              timeOut: 2000,
-              positionClass: "toast-bottom-right"
-            })
-          }
-        },
-        false
-      );
-    </script>
+        });
+        //Pour afficher automatiquement le modal de formumlaire 
+        //si le parametre id se trouve dans l'url
+        //exemple : admin.php?id=10
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('id')) {
+          $('#animalFormModal').modal('show')
+        }
+        //si on a le parametre 'saveSuccess' dans l'url on affiche le toast
+        if (urlParams.has('saveSuccess')) {
+          toastr.success("Enregistré avec succès", undefined, {
+            timeOut: 2000,
+            positionClass: "toast-bottom-right"
+          })
+        }
+        //si on a le parametre 'deleteSuccess' dans l'url on affiche le toast
+        if (urlParams.has('deleteSuccess')) {
+          toastr.success("Supprimé avec succès", undefined, {
+            timeOut: 2000,
+            positionClass: "toast-bottom-right"
+          })
+        }
+      },
+      false
+    );
+  </script>
 </body>
