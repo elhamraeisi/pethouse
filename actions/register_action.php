@@ -1,8 +1,6 @@
 <?php
 // Imports
-include_once '../commun/constants_inc.php';
 include_once '../commun/db_connect_inc.php'; // Se connecter à la BDD
-//include_once 'functions_inc.php';
 
 // Crée ou restaure une session
 session_start();
@@ -31,7 +29,7 @@ if ((int) $row['NumberOfUser'] === 0) {
     $params = array(
       ':prenom' => htmlspecialchars($_POST['prenom']),
       ':nom' => htmlspecialchars($_POST['nom']),
-      ':mail' => htmlspecialchars($_POST['mail']),
+      ':mail' => $mail,
       ':pass' => $hash
     );
     $data->execute($params);
@@ -39,7 +37,6 @@ if ((int) $row['NumberOfUser'] === 0) {
   } else {
     header('location:../register_form.php?captcha=false');
   }
-
   // Renvoie vers LOGIN
 } else {
   header('location:../register_form.php?exists=true');

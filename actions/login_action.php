@@ -1,17 +1,15 @@
 <?php
 // Imports
-include_once '../commun/constants_inc.php';
 include_once '../commun/db_connect_inc.php';
 
-// Crée ou restaure une session
-session_start();
-
-// Analyse et transforme la saisie
+// Analyse et transforme la saisie 
+// Pour securiser les champs contre l'injection de script
 $mail = htmlspecialchars($_POST['mail']);
 $pass = htmlspecialchars($_POST['pass']);
-$pass = sha1(md5($pass) . sha1($mail));
+$captcha = htmlspecialchars($_POST['captcha']);
 
-// Prépare la requête d'authentification
+$pass = sha1(md5($pass) . sha1($mail));
+// ici c'est la requete pour trouver l'utilisateur par son email et son mdp
 $sql = 'SELECT * FROM utilisateur WHERE mail=? AND pass=?';
 $params = array($mail, $pass);
 $data = $pdo->prepare($sql);
@@ -20,7 +18,11 @@ $row = $data->fetch();
 
 // Test authentification
 if (!empty($row['id'])) {
+  //on a besoin de recuperer la sesion pour verifier le captcha
+  session_start();
+  //je compare le code saisi par l'utilisateur avec le code correct qui se trouve dans la sesion
   if ($_POST['captcha'] === $_SESSION['captcha']) {
+
     // Suppprime la session en cours
     session_unset();
     session_destroy();
@@ -29,10 +31,6 @@ if (!empty($row['id'])) {
     session_start();
     $_SESSION['connected'] = true;
     $_SESSION['role'] = (int) $row['role'];
-    //pour afficher le nom et prenom de l'utilisateur connecté dans le header 
-    $_SESSION['nom'] = $row['nom'];
-    $_SESSION['prenom'] = $row['prenom'];
-
 
     // Redirection vers INDEX
     if ((int) $row['role'] === 1) {
@@ -41,7 +39,7 @@ if (!empty($row['id'])) {
       header('location:../index.php');
     }
   } else {
-    header('location:../login.php?auth=false');
+    header('location:../login.php?captcha=false');
   }
 } else {
   header('location:../login.php?auth=false');

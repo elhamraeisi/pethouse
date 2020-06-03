@@ -2,7 +2,7 @@
 // Imports
 include_once 'commun/header_inc_admin.php';
 include_once 'commun/db_connect_inc.php';
-include('head.php');
+include('commun/head.php');
 include('nav_admin.php');
 ?>
 
@@ -15,7 +15,10 @@ include('nav_admin.php');
             <h2>Animaux</h2>
           </div>
           <div class="col-sm-8 d-flex flex-row-reverse">
-            <a class="btn btn-outline-light ml-3 pt-3" data-toggle="modal" data-target="#animalFormModal"><i class="fas fa-plus-circle pr-1"></i><span>Ajouter</span></a>
+            <a class="btn btn-outline-light ml-3 pt-3" data-toggle="modal" data-target="#animalFormModal">
+              <i class="fas fa-plus-circle pr-1"></i>
+              <span>Ajouter</span>
+            </a>
             <form action="admin.php" method="GET" class="has-search mt-2">
               <span class="fa fa-search form-control-feedback"></span>
               <input class="form-control rounded-pill bg-transparent border-white text-white" type="search" name="search" placeholder="Nom">
@@ -28,7 +31,8 @@ include('nav_admin.php');
     <?php
     try {
       // Préparation et exécution requête
-      $sql = 'SELECT photo AS "Photo", id AS "Code", nom AS "Nom", sexe AS "Sexe", couleur AS "Couleur", poids AS "Poids", disponibilite AS "Disponibilité", vaccine AS "Vacciné", identifie AS "Identifié", prix AS "Prix", ddn AS "Né(e)" FROM animal';
+      $sql = 'SELECT photo AS "Photo", id AS "Code", nom AS "Nom", sexe AS "Sexe", couleur AS "Couleur", poids AS "Poids",
+       disponibilite AS "Disponibilité", vaccine AS "Vacciné", identifie AS "Identifié", prix AS "Prix", ddn AS "Né(e)" FROM animal';
       // chercher un animal par son nom
       if (!empty($_GET['search']))
         $sql .= ' WHERE nom like "%' . $_GET['search'] . '%"';
@@ -41,7 +45,6 @@ include('nav_admin.php');
       $html .= '<thead class="thead-light"><tr>';
       for ($i = 0; $i < $data->columnCount(); $i++) {
         // Affiche le nom des colonnes extraits du dataset
-        // $html .= '<th>Colonne ' . ($i + 1) . '</th>';
         $meta = $data->getColumnMeta($i);
         $html .= '<th class="text-center">' . $meta['name'] . '</th>';
         // Stocke dans un tableau le nom de la colonne associé 
@@ -58,10 +61,10 @@ include('nav_admin.php');
         $html .= '<tr>';
         foreach ($row as $col => $val) { // Pour chaque colonne de la ligne
 
+          //pour afficher la valeur de la colonne vaccine et identifie
           if ($types[$col] === 'TINY') {
             $val = $val == true ? 'Oui' : 'Non';
           }
-
           // Ajoute la donnée dans sa cellule ou dans une image
           if ($types[$col] === 'BLOB') {
             $html .= '<td><img src="' . ($val === null ? 'pics/animal_generic.png' : $val) . '"style="width:8em;height:5em"></td>';
@@ -91,22 +94,12 @@ include('nav_admin.php');
         </div>
       </div>
     </div>
-    <div class="modal fade" id="generiqueFormModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content p-0">
-          <div class="modal-body p-0">
-            <?php include('generique_form.php'); ?>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <script>
     window.addEventListener(
       'load',
       function() {
-
         let buttons = document.querySelectorAll('a.text-danger');
         for (let i = 0; i < buttons.length; i++) {
           buttons[i].addEventListener(
@@ -126,10 +119,10 @@ include('nav_admin.php');
         $('#animalFormModal').on('hidden.bs.modal', function() {
           var urlParams = new URLSearchParams(window.location.search);
           if (urlParams.has('id')) {
-            window.location.href = 'admin.php';
+            location.href = 'admin.php';
           }
         });
-        //Pour afficher automatiquement le modal de formumlaire 
+        //Pour afficher automatiquement le modal de formulaire 
         //si le parametre id se trouve dans l'url
         //exemple : admin.php?id=10
         var urlParams = new URLSearchParams(window.location.search);

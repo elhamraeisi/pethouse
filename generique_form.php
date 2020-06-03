@@ -22,7 +22,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <div id="myform-row" class="row justify-content-center align-items-center mb-5">
       <div id="myform-column">
         <div id="myform-box" class="col-md-12">
-          <h2 class="text-center text-info pb-4">Ajouter un générique</h2>
+          <h2 class="text-center text-info py-4">Ajouter un générique</h2>
           <form id="myform-form" class="form" action="actions/generique_action.php<?php echo ($update ? '?id=' . $_GET['id'] : ''); ?>" method="post" enctype="multipart/form-data">
             <div>
               <label for="titre">Nom*</label>

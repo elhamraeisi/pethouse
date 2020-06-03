@@ -1,5 +1,5 @@
 <?php
-include('head.php');
+include('commun/head.php');
 ?>
 
 <body>
@@ -11,7 +11,7 @@ include('head.php');
             <img src="pics/401-img.png" alt="dog" class="img-above" />
           </div>
           <div class="col-sm-9 col-md-8 order-md-2 mb-5">
-            <h1 class="text-white text-center">Accès Interdit !</h1>
+            <h1 class="text-white text-center pt-2">Accès Interdit !</h1>
             <div class="my-5 px-5">
               <p><span>L’accès à cette page est réservé à l'administrateur </span></p>
             </div>

@@ -2,7 +2,7 @@
 // Imports
 include_once 'commun/db_connect_inc.php';
 include_once 'commun/header_inc_admin.php';
-include('head.php');
+include('commun/head.php');
 include('nav_admin.php');
 ?>
 

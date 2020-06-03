@@ -2,6 +2,32 @@ body {
   background-color: #f8f9fa;
   font-family: 'Brandon Grotesque Light', sans-serif;
 }
+.background-blue{
+  background-color: #0e3569;
+  background: radial-gradient(ellipse at bottom 20% left 50%,#055594 1%,#05508a 22%,#03294e 88%,#011933 100%);
+ }
+ .background-light-blue{
+   background-color: rgb(41, 126, 171);
+  }
+  .background-light-grey-solid {
+  background-color: #f0f0f0;
+ }
+ h1{
+  font-family: 'Brandon Grotesque Black', sans-serif;
+  font-size: 2.2rem;
+  }
+  h2{
+    font-family: 'Brandon Grotesque Black', sans-serif;
+    font-size: 2.6rem;
+  }
+  h3{
+    font-family: 'Brandon Grotesque Black', sans-serif;
+    color: #444444;
+  }
+  h5{
+    font-family: 'Brandon Grotesque Light', sans-serif;
+    color: #444444;
+  }
 .img-above{
   margin-top: 40px;
   margin-bottom: -15rem;
@@ -12,35 +38,7 @@ body {
   font-family: 'Brandon Grotesque Light', sans-serif;
 }
 #map {
-  width: 100%;
   height: 400px;
-  background-color: grey;
-}
-.background-blue{
- background-color: #0e3569;
- background: radial-gradient(ellipse at bottom 20% left 50%,#055594 1%,#05508a 22%,#03294e 88%,#011933 100%);
-}
-.background-light-blue{
-  background-color: rgb(41, 126, 171);
- }
- .background-light-grey-solid {
- background-color: #f0f0f0;
-}
-h1{
-font-family: 'Brandon Grotesque Black', sans-serif;
-font-size: 2.2rem;
-}
-h2{
-  font-family: 'Brandon Grotesque Black', sans-serif;
-  font-size: 2.6rem;
-}
-h3{
-  font-family: 'Brandon Grotesque Black', sans-serif;
-  color: #444444;
-}
-h5{
-  font-family: 'Brandon Grotesque Light', sans-serif;
-  color: #444444;
 }
 .detail{
   font-family: 'Brandon Grotesque Black', sans-serif;
@@ -87,13 +85,9 @@ h5{
   background-color: rgb(41, 126, 171); 
   color: #fff;
 }
-#myform .container #myform-row #myform-column #myform-box {
-  padding-top: 30px;
+.myform {
   border-radius: 1.1rem;
   background-color: #ffffff;
-}
-#myform .container #myform-row #myform-column #myform-box #myform-form {
-  padding: 30px;
 }
 .noborder{
   border-left: 0;
@@ -154,7 +148,6 @@ h5{
   transform: scale(1.1);
   box-shadow: 0px 7px 18px 0px rgba(0,0,0,0.15);
 }
-
 .cover{
   object-fit: cover;
   width: 100%;
@@ -167,7 +160,7 @@ h5{
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 h1{
-  font-size: 1.9rem;
+  font-size: 2.3rem;
 }
 .billboard img {
   width: 200px;
@@ -178,7 +171,7 @@ h1{
 .search-placeholder{
   font-size: 1.2rem;
 }
-.btn-primary{
+.btn-darkBlue{
   font-size: 0.6rem;
   padding: 0.1rem 0.2rem;
 }
