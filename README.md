@@ -5,4 +5,4 @@
 # Admin : Liste des animaux
 ![](screencaptureliste-animaux.png)
 # Admin : Liste des proprietaires
-![](screencaptureliste-proprietaire.png)
+![](screencapture-proprietaire-list.png)
