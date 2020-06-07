@@ -129,6 +129,7 @@ include('nav_admin.php');
         if (urlParams.has('id')) {
           $('#animalFormModal').modal('show')
         }
+
         //si on a le parametre 'saveSuccess' dans l'url on affiche le toast
         if (urlParams.has('saveSuccess')) {
           toastr.success("Enregistré avec succès", undefined, {

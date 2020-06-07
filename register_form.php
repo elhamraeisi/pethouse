@@ -15,7 +15,7 @@
             <!-- alert -->
             <?php
             if (isset($_GET['exists']) && !empty($_GET['exists']) && $_GET['exists'] === 'true') {
-              echo '<div class="alert alert-danger" role="alert">L\'adresse mail existe déjà dans la table des abonnés !</div>';
+              echo '<div class="alert alert-danger" role="alert">L\'adresse mail existe déjà !</div>';
             }
             if (isset($_GET['captcha']) && !empty($_GET['captcha']) && $_GET['captcha'] === 'false') {
               echo '<div class="alert alert-danger" role="alert">Le code est incorrect !</div>';
@@ -41,10 +41,13 @@
               <div class="form-group">
                 <label for="confirmation">Confirmation*</label>
                 <input name="password_confirm" type="password" id="password_confirm" class="form-control noborder" minlength="6" oninput="check(this)" required>
+
                 <script language='javascript' type='text/javascript'>
                   function check(input) {
-                    if (input.value != document.getElementById('pass').value) {
-                      input.setCustomValidity('Password Must be Matching.');
+                    if (input.value !== document.getElementById('pass').value) {
+                      input.setCustomValidity('Le mot de passe doit correspondre.');
+                    } else {
+                      input.setCustomValidity('');
                     }
                   }
                 </script>

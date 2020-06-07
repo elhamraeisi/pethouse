@@ -10,7 +10,6 @@ foreach ($_POST as $key => $val) {
     $params[':' . $key] = null;
   }
 }
-
 // Récupération du fichier à téléverser
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE) {
 
@@ -53,19 +52,22 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE)
 }
 // Préparation et exécution requête
 try {
-
   if (!isset($_GET['id']) && empty($_GET['id'])) {
     // Si id est vide alors INSERT
     $sql = 'INSERT INTO animal(nom, id_proprietaire, id_generique, sexe, couleur, poids, disponibilite, vaccine, identifie, description, prix, ddn, photo)
      VALUES(:nom, :id_proprietaire, :id_generique, :sexe, :couleur, :poids, :disponibilite, :vaccine, :identifie, :description, :prix, :ddn, :photo)';
   } else {
 
-    // Si id n'est pas vide alors INSERT
+    // Si id n'est pas vide alors UPDATE
     $sql = 'UPDATE animal SET nom=:nom, id_proprietaire=:id_proprietaire, id_generique=:id_generique, sexe=:sexe, couleur=:couleur,
      poids=:poids, disponibilite=:disponibilite, vaccine=:vaccine, identifie=:identifie, description=:description, prix=:prix, ddn=:ddn';
 
-    if (!empty($params[':photo']))
+
+    if (!empty($params[':photo'])) {
+      //mis à jour de la photo, si une photo est selectionnée
       $sql .= ', photo=:photo ';
+    }
+
     // Si on donne pas id tous les animeaux seront mise à jour
     $sql .= ' WHERE id=' . $_GET['id'];
   }

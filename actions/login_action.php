@@ -3,11 +3,12 @@
 include_once '../commun/db_connect_inc.php';
 
 // Analyse et transforme la saisie 
-// Pour securiser les champs contre l'injection de script
+// Pour securiser les champs contre l'injection de script (special character comme '<script>')
 $mail = htmlspecialchars($_POST['mail']);
 $pass = htmlspecialchars($_POST['pass']);
 $captcha = htmlspecialchars($_POST['captcha']);
 
+// cryptage de mot de passe
 $pass = sha1(md5($pass) . sha1($mail));
 // ici c'est la requete pour trouver l'utilisateur par son email et son mdp
 $sql = 'SELECT * FROM utilisateur WHERE mail=? AND pass=?';

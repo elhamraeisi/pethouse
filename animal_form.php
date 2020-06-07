@@ -2,7 +2,7 @@
 include_once 'commun/header_inc_admin.php';
 include 'commun/db_connect_inc.php';
 
-//Si on est en mode update (si hot_id dans l'URL)
+//Si on est en mode update
 if (isset($_GET['id']) && !empty($_GET['id'])) {
   $sql = 'SELECT * FROM animal WHERE id = ?';
   $params = array($_GET['id']);
@@ -13,6 +13,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 } else {
   $row = array(
     'id_generique' => '',
+    'id_proprietaire' => '',
     'nom' => '',
     'sexe' => '',
     'ddn' => '',
@@ -32,19 +33,21 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <div id="myform-row" class="row justify-content-center align-items-center mb-5">
       <div id="myform-column">
         <div id="myform-box" class="col-md-12">
-          <h2 class="text-center text-info py-4">Ajouter un animal</h2>
+          <h2 class="text-center text-info py-4"><?php echo ($update ? 'Mise à jour de l\'animal' : 'Ajouter un animal'); ?></h2>
           <form id="myform-form" class="form" action="actions/animal_action.php<?php echo ($update ? '?id=' . $_GET['id'] : ''); ?>" method="post" enctype="multipart/form-data">
             <div class="row pt-4">
               <div class="col-md-6">
                 <label for="generique">Générique*</label>
                 <a href="generique_list.php" type="submit" class="badge badge-secondary ml-3">Ajouter</a>
-                <select class="form-control" name="id_generique" value="<?php echo $row['id_generique'] ?>" id="id_generique">
+                <select class="form-control" name="id_generique" value="<?php echo $row['id_generique'] ?>" id="id_generique" required>
                   <?php
                   $sql = 'SELECT * from generique';
                   $data = $pdo->prepare($sql);
                   $data->execute();
                   while ($rowGenerique = $data->fetch()) {
-                    echo '<option value=' . $rowGenerique['id'] . '>' . $rowGenerique['titre'] . '</option>';
+                    $isSelected = ($row['id_generique'] === $rowGenerique['id'] ?  'selected="selected"' : '');
+
+                    echo '<option value="' . $rowGenerique['id'] . '"' . $isSelected . '>' . $rowGenerique['titre'] . '</option>';
                   }
                   ?>
                 </select>
@@ -58,7 +61,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                   $data = $pdo->prepare($sql);
                   $data->execute();
                   while ($rowPropr = $data->fetch()) {
-                    echo '<option value=' . $rowPropr['id'] . '>' . $rowPropr['prenom'] . ' ' . $rowPropr['nom'] . '</option>';
+                    $isSelected = ($row['id_proprietaire'] === $rowPropr['id'] ?  'selected="selected"' : '');
+
+                    echo '<option value="' . $rowPropr['id'] . '"' . $isSelected . '>' . $rowPropr['prenom'] . ' ' . $rowPropr['nom'] . '</option>';
                   }
                   ?>
                 </select>

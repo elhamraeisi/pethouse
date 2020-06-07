@@ -87,17 +87,14 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             var placeSearch, autocomplete;
 
             function activatePlacesSearch() {
-
               var input = document.getElementById('adresse');
               autocomplete = new google.maps.places.Autocomplete(input);
-              //autocomplete.setFields(['place_id'])
               autocomplete.addListener('place_changed', fillInAddress);
-
             }
 
             function fillInAddress() {
               var place = autocomplete.getPlace();
-              console.log(place.geometry.location)
+              // on recuper lat et lng et on rempli les chemps lat et lng dans le formulaire
               $('#lat').val(place.geometry.location.lat())
               $('#lon').val(place.geometry.location.lng())
             }

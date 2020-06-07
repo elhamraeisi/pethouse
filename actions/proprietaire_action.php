@@ -13,9 +13,6 @@ foreach ($_POST as $key => $val) {
 
 // Récupération du fichier à téléverser
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE) {
-  // *******************************************************
-  // Variables 
-  // *******************************************************
 
   $file_name = $_FILES['photo']['name'];
 
@@ -31,19 +28,12 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] !== UPLOAD_ERR_NO_FILE)
   // Extensions autorisées
   $allowed_ext = array('bmp', 'gif', 'jpg', 'jpeg', 'png');
 
-  // *******************************************************
-  // Gestion des erreurs 
-  // *******************************************************
   $errors = array();
   // Si extension incorrecte
-
   if (!in_array($file_ext, $allowed_ext)) {
     $errors[] = '<p>Extension ' . $file_ext . ' non autorisée : ' . implode(',', $allowed_ext);
   }
 
-  // *******************************************************
-  // Traitement du fichier 
-  // *******************************************************
   if (empty($errors)) {
     // 1. Conversion de l'image en base64 et insertion 
     // dans le tableau de paramètres
@@ -75,17 +65,20 @@ try {
     // Si id est vide alors INSERT
     $sql = 'INSERT INTO proprietaire(prenom, nom, sexe, ddn, adresse,lat,lon, tel, mail, photo) VALUES(:prenom, :nom, :sexe, :ddn, :adresse,:lat,:lon, :tel, :mail, :photo)';
   } else {
-    // Si id n'est pas vide alors INSERT
+    // Si id n'est pas vide alors UPDATE
     $sql = 'UPDATE proprietaire SET prenom=:prenom, nom=:nom, sexe=:sexe, ddn=:ddn, adresse=:adresse,lat=:lat,lon=:lon ,tel=:tel, mail=:mail ';
 
-    if (!empty($params[':photo']))
+    if (!empty($params[':photo'])) {
+      //mis à jour de la photo, si une photo est selectionnée
       $sql .= ', photo=:photo ';
+    }
 
+    // Si on donne pas id tous les animeaux seront mise à jour
     $sql .= ' WHERE id=' . $_GET['id'];
   }
   $data = $pdo->prepare($sql);
   $data->execute($params);
-  // header('location:../proprietaire_list.php?saveSuccess=true');
+  header('location:../proprietaire_list.php?saveSuccess=true');
 } catch (PDOException $err) {
   echo $err->getMessage();
 }
