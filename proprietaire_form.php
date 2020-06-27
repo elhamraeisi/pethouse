@@ -2,9 +2,10 @@
 include_once 'commun/header_inc_admin.php';
 include 'commun/db_connect_inc.php';
 
-//Si on est en mode update (si hot_id dans l'URL)
+//Si on est en mode update
 if (isset($_GET['id']) && !empty($_GET['id'])) {
   $sql = 'SELECT * FROM proprietaire WHERE id = ?';
+  //je pré remplir le formulaire
   $params = array($_GET['id']);
   $data = $pdo->prepare($sql);
   $data->execute($params);
@@ -31,7 +32,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     <div id="myform-row" class="row justify-content-center align-items-center mb-5">
       <div id="myform-column">
         <div id="myform-box" class="col-md-12">
-          <h2 class="text-center text-info py-4">Ajouter un propriétaire</h2>
+          <h2 class="text-center text-info py-4"><?php echo ($update ? 'Mise à jour du propriétaire' : 'Ajouter un propriétaire'); ?></h2>
           <form id="myform-form" class="form" action="actions/proprietaire_action.php<?php echo ($update ? '?id=' . $_GET['id'] : ''); ?>" method="post" enctype="multipart/form-data">
             <div class="row pt-4">
               <div class="col-md-6">
@@ -60,6 +61,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             <div class="group-control pt-4">
               <label for="adresse">Adresse*</label>
               <input type="text" class="form-control noborder" value="<?php echo $row['adresse'] ?>" id="adresse" name="adresse" required>
+              <!-- cree 2 inputs cachés avec lat et lon-->
               <input type="hidden" value="<?php echo $row['lat'] ?>" id="lat" name="lat">
               <input type="hidden" value="<?php echo $row['lon'] ?>" id="lon" name="lon">
 
@@ -85,10 +87,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
           </form>
           <script>
             var placeSearch, autocomplete;
-
+            //pour activer l'auto completion pour le champ adresse
             function activatePlacesSearch() {
               var input = document.getElementById('adresse');
               autocomplete = new google.maps.places.Autocomplete(input);
+              //quand utilisateur sélectionner une adresse la fonction fillInAddress sera appelé
               autocomplete.addListener('place_changed', fillInAddress);
             }
 

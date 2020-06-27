@@ -2,14 +2,9 @@
 // Import
 include_once '../commun/db_connect_inc.php';
 
-// Récupération des valeurs du formulaire : 2nde itération
-foreach ($_POST as $key => $val) {
-  if (isset($_POST[$key]) && !empty($_POST[$key])) {
-    $params[':' . $key] = htmlspecialchars($val);
-  } else {
-    $params[':' . $key] = null;
-  }
-}
+// Récupération la valeur du formulaire 
+$titre = htmlspecialchars($_POST['titre']);
+
 // Préparation et exécution requête
 try {
 

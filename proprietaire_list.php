@@ -12,7 +12,7 @@ include('nav_admin.php');
       <div class="table-title">
         <div class="row">
           <div class="col-sm-6">
-            <h2>Proprietaires</h2>
+            <h2>Propriétaires</h2>
           </div>
           <div class="col-sm-6 d-flex flex-row-reverse">
             <a type="submit" class="btn btn-outline-light ml-3 pt-3" data-toggle="modal" data-target="#proprietaireFormModal"><i class="fas fa-plus-circle pr-1"></i><span>Ajouter</span></a>

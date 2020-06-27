@@ -42,15 +42,10 @@ include('nav_admin.php');
         $html .= '<thead class="thead-light"><tr>';
         for ($i = 0; $i < $data->columnCount(); $i++) {
           // Affiche le nom des colonnes extraits du dataset
-          // $html .= '<th>Colonne ' . ($i + 1) . '</th>';
           $meta = $data->getColumnMeta($i);
           $html .= '<th class="text-center">' . $meta['name'] . '</th>';
-          // Stocke dans un tableau le nom de la colonne associé 
-          // à son type de données
-          $types[$meta['name']] = $meta['native_type'];
         }
         $html .= '<th class="text-center">Réglages</th>';
-
         $html .= '</tr></thead>';
 
         // Crée le tableau/corps

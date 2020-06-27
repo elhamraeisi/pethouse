@@ -12,6 +12,7 @@ $data = $pdo->prepare($sql);
 $data->execute();
 $animal = $data->fetch();
 
+//recuperer le proprietaire de l'animal
 $sql = 'SELECT * from proprietaire WHERE id=' . $animal['id_proprietaire'];
 $data = $pdo->prepare($sql);
 $data->execute();
@@ -34,7 +35,7 @@ $propr = $data->fetch();
               <a href=<?php echo 'http://192.168.64.2/animaux/wordpress/?page_id=131&proprEmail=' . ($propr['mail']) ?> class="btn btn-success p-3"><i class="far fa-envelope pr-2"></i>Envoyer un message</a>
             </div>
             <div class="card-body">
-              <h3 class="text-primary"><?php echo $propr['prenom'] . $propr['nom'] ?></h3>
+              <h3 class="text-primary"><?php echo $propr['prenom'] . ' ' . $propr['nom'] ?></h3>
               <p class="detail">Mail : <span class="detail-info"><?php echo $propr['mail'] ?></span></p>
               <p class="detail">Tél : <span class="detail-info"><?php echo $propr['tel'] ?></span></p>
               <p class="detail">Adresse : <span class="detail-info"><?php echo $propr['adresse'] ?></span></p>
@@ -80,7 +81,7 @@ $propr = $data->fetch();
           lat: <?php echo $propr['lat']; ?>,
           lng: <?php echo $propr['lon']; ?>
         };
-        // le carte, centrée a la position du proprietiare
+        // creation la carte, centrée a la position du proprietiare
         var map = new google.maps.Map(
           document.getElementById('map'), {
             zoom: 12,

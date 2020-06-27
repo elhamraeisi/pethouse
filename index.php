@@ -45,7 +45,10 @@ include('nav_visitor.php');
       $data = $pdo->prepare($sql);
       $data->execute();
       echo '<a href="index.php#liste_animaux" class="btn btn-secondary p-3 m-2 rounded-pill" >TOUS</a>';
+
+      //Affichage de chaque bouton generique
       while ($row = $data->fetch()) {
+        //Definir la couleur de chaque bouton,si selectionne btn-darkBlue(Bleu foncé) sinon btn-info(Bleu clair)
         $buttonColor = (!empty($_GET['idGenerique']) && $_GET['idGenerique'] == $row['id']) ? 'btn-darkBlue' : 'btn-info';
         echo '<a href="index.php?idGenerique=' . $row['id'] . '#liste_animaux" class="btn text-uppercase '
           . $buttonColor . ' p-3 m-2 rounded-pill">' . $row['titre'] . ' </a>';
@@ -68,17 +71,19 @@ include('nav_visitor.php');
     </h1>
     <div class="row">
       <?php
-      // Exécute la requête SQL
-      $sql = 'SELECT * from animal WHERE 1=1';
+      //Preparation de la requête
+      $sql = 'SELECT * from animal';
 
+      //Si idGenerique n'est pas vide, je filtre les animaux par generique
       if (!empty($_GET['idGenerique']))
-        $sql .= ' AND id_generique=' . $_GET['idGenerique'];
+        //j'ajoute cette condition dans ma requete sql
+        $sql .= ' where id_generique=' . $_GET['idGenerique'];
 
+      //Si la recherch dans lURL n'est pas vide, je filtre les animaux par le nom
       if (!empty($_GET['search']))
-        $sql .= ' AND nom like "%' . $_GET['search'] . '%"';
-      //SELECT * from animal WHERE 1=1' AND nom like '%toto%'
+        $sql .= ' where nom like "%' . $_GET['search'] . '%"';
 
-
+      // Exécute la requête SQL
       $data = $pdo->prepare($sql);
       $data->execute();
 
@@ -86,7 +91,7 @@ include('nav_visitor.php');
       $html = '';
       while ($row = $data->fetch()) {
         $html .= '<a href="animal_details.php?id=' . $row['id'] . '" style="text-decoration-line: none;">';
-        $html .= '<div class="card-animal m-3 justify-content-center" style="width: 16.9rem;">';
+        $html .= '<div class="card-animal m-3 justify-content-center" style="width: 18.5rem;">';
         $html .= '<img src="' . ($row['photo'] === null ? 'pics/animal_generic.png' : $row['photo']) . '" class="cover" style="border-top-left-radius:18px; border-top-right-radius:18px;" />';
         $html .= '<div class="card-body">';
         $html .= '<h2 class="card-title text-info text-truncate" style="text-transform: capitalize;">' . $row['nom'] . '</h2>';

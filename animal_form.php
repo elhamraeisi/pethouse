@@ -5,6 +5,7 @@ include 'commun/db_connect_inc.php';
 //Si on est en mode update
 if (isset($_GET['id']) && !empty($_GET['id'])) {
   $sql = 'SELECT * FROM animal WHERE id = ?';
+  //je pré remplir le formulaire
   $params = array($_GET['id']);
   $data = $pdo->prepare($sql);
   $data->execute($params);

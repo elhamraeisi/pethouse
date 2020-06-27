@@ -21,48 +21,47 @@
               echo '<div class="alert alert-danger" role="alert">Le code est incorrect !</div>';
             }
             ?>
-            <form action="actions/register_action.php" method="post">
-              <div class="form-group">
-                <label for="prenom">Prénom*</label>
-                <input type="text" id="prenom" name="prenom" class="form-control noborder" maxlength="30" pattern="[A-Za-zàâäáéèëêïîôöùûü\-]{2,30}" required>
-              </div>
-              <div class="form-group">
-                <label for="nom">Nom*</label>
-                <input type="text" id="nom" name="nom" class="form-control noborder" maxlength="30" pattern="[A-Za-zàâäáéèëêïîôöùûü\-]{2,30}" required>
-              </div>
-              <div class="form-group">
-                <label for="mail">Courriel*</label>
-                <input type="email" name="mail" id="mail" class="form-control noborder" required>
-              </div>
-              <div class="form-group">
-                <label for="pass">Mot de passe*</label>
-                <input type="password" name="pass" id="pass" class="form-control noborder" minlength="6" required>
-              </div>
-              <div class="form-group">
-                <label for="confirmation">Confirmation*</label>
-                <input name="password_confirm" type="password" id="password_confirm" class="form-control noborder" minlength="6" oninput="check(this)" required>
+            <div class="form-group">
+              <label for="prenom">Prénom*</label>
+              <input type="text" id="prenom" name="prenom" class="form-control noborder" maxlength="30" pattern="[A-Za-zàâäáéèëêïîôöùûü\-]{2,30}" required>
+            </div>
+            <div class="form-group">
+              <label for="nom">Nom*</label>
+              <input type="text" id="nom" name="nom" class="form-control noborder" maxlength="30" pattern="[A-Za-zàâäáéèëêïîôöùûü\-]{2,30}" required>
+            </div>
+            <div class="form-group">
+              <label for="mail">Courriel*</label>
+              <input type="email" name="mail" id="mail" class="form-control noborder" required>
+            </div>
+            <div class="form-group">
+              <label for="pass">Mot de passe*</label>
+              <input type="password" name="pass" id="pass" class="form-control noborder" minlength="6" required>
+            </div>
+            <div class="form-group">
+              <label for="confirmation">Confirmation*</label>
+              <input name="password_confirm" type="password" id="password_confirm" class="form-control noborder" minlength="6" oninput="check(this)" required>
 
-                <script language='javascript' type='text/javascript'>
-                  function check(input) {
-                    if (input.value !== document.getElementById('pass').value) {
-                      input.setCustomValidity('Le mot de passe doit correspondre.');
-                    } else {
-                      input.setCustomValidity('');
-                    }
+              <script language='javascript' type='text/javascript'>
+                function check(input) {
+                  if (input.value !== document.getElementById('pass').value) {
+                    input.setCustomValidity('Le mot de passe doit correspondre.');
+                  } else {
+                    input.setCustomValidity('');
                   }
-                </script>
+                }
+              </script>
+            </div>
+            <div class="form-group">
+              <div class="text-center my-3">
+                <img src="captcha.php">
               </div>
-              <div class="form-group">
-                <div class="text-center my-3">
-                  <img src="captcha.php">
-                </div>
-                <input type="number" name="captcha" id="captcha" class="form-control noborder" placeholder="Entrez le code" required>
-              </div>
-              <input type="submit" value="S'inscrire" class="btn btn-primary rounded-pill btn-block">
-              <div class="mt-3">
-                <a href="login.php" class="btn btn-info rounded-pill btn-block">J'ai un compte</a>
-              </div>
-            </form>
+              <input type="number" name="captcha" id="captcha" class="form-control noborder" placeholder="Entrez le code" required>
+            </div>
+            <input type="submit" value="S'inscrire" class="btn btn-primary rounded-pill btn-block">
+            <div class="mt-3">
+              <a href="login.php" class="btn btn-info rounded-pill btn-block">J'ai un compte</a>
+            </div>
+          </form>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ define('LENGTH', 6); // ou const LENGTH = 6;
 // Crée les tableaux de caractères pour générer le captcha
 $num = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 shuffle($num);
-// Pioche 6 caractères au hasard dans le tableau MIX
+// Pioche 6 caractères au hasard dans le tableau num
 $captcha = '';
 for ($i = 0; $i < LENGTH; $i++) {
   $captcha .= $num[rand(0, count($num) - 1)];

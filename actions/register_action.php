@@ -18,7 +18,6 @@ if ((int) $row['NumberOfUser'] === 0) {
     $mail = htmlspecialchars($_POST['mail']);
     $pass = htmlspecialchars($_POST['pass']); //convertir les characters specieaux en html examples: '<' -> '&lt;'
 
-
     // Insérer les données dans la table UTILISATEUR
     $sql = 'INSERT INTO utilisateur(prenom, nom, mail, pass) VALUES(:prenom, :nom, :mail, :pass)';
     $data = $pdo->prepare($sql);
